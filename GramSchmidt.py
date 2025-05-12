@@ -4,7 +4,7 @@ import numpy as np #only used for square root function
 input: a list of lists, understood to be vectors
 output: list of vectors
 The Gram-Schmidt Algorithm takes a list of linearly independent vectors (I did not implement a check to see if they were not 
-independent) and constructs an orthogonal basis of vectors from them. It does this by subtracting the components in existing 
+independent) and constructs an orthonormal basis of vectors from them. It does this by subtracting the components in existing 
 directions from the next vector since it needs to span a new dimension. In other words, this algorithm constructs the next
 vector by assuming the previous vectors are already orthogonal. I decided to normalize them all at the end, since the order
 of that step doesn't matter.
@@ -83,6 +83,7 @@ def subtract_vec(v1, v2):
 '''
 input: a vector and a scalar
 output: a vector.
+divides a vector by a scalar.
 '''
 def divide_vec(v, n):
     for i in range(len(v)):
@@ -102,11 +103,15 @@ def normalize(vectors):
     return vectors    
 
 
-
 def main():
-    print(dot_product([1,2], [3, 4]))
-    print(denominator([1, -1, 1]))
-    print(projection([2,4], [3,1]))
-    print(subtract_vec([3,2], [2,1]))
-    print(divide_vec([2,4,6], 2))
-    print(gram_schmidt([[1,-1,1], [1,0,1], [1,1,2]]))
+    print("Examples: \n")
+    print(f"The dot product of [1,2] and [3,4] is {dot_product([1,2], [3, 4])} \n")
+    print(f"The square norm of [1, -1, 1] is {denominator([1, -1, 1])} \n")
+    print(f"The projection of [3,1] onto [2,4] is {projection([2,4], [3,1])} \n")
+    print(f"The difference of [3,2] and [2,1] is {subtract_vec([3,2], [2,1])} \n")
+    print(f"The result of dividing [2,4,6] by 2 is {divide_vec([2,4,6], 2)} \n")
+    print(f"The result of Gram-Schmidt on the vectors [1,-1,1], [1,0,1], [1,1,2] is {gram_schmidt([[1,-1,1], [1,0,1], [1,1,2]])} \n")
+
+
+if __name__ == "__main__":
+    main()
